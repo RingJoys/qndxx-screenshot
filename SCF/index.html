@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+	<script>
+	function getimg(a){
+	baseurl="https://service-aaaaaaaa-1300000000.sh.apigw.tencentcs.com/release/example"
+	$.ajax({
+			type: "GET",
+			dataType: "json",
+			url: baseurl+"?old="+a,
+			success: function (result) {
+				newimg="<img src=\""+result['link']+"\" style=\"position: absolute;width: 100%;height: 100%;top:0;left: 0 ;\">"
+				$("#container").html(newimg);
+				document.title=result['title'];
+			}
+	})
+	}
+	</script>
+</head>
+<body style="display: flex;flex-direction: column;justify-content: center;align-content: center;height:100vh;" id="container">
+	<button onclick="getimg(0)" style="margin: 0 auto 50px auto;font-size: 100px;width: 800px;height: 200px;">最新一期</button>
+	<button onclick="getimg(1)" style="margin: 50px auto 0 auto;font-size: 100px;width: 800px;height: 200px;">上一期</button>
+</body>
+</html>
